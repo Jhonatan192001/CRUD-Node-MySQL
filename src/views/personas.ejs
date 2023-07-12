@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header.ejs') %>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">CRUD</a>
+    </nav>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-7">
+                <table class="table table-border table-hover">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data) { %>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td><%= (i + 1) %></td>
+                                    <td><%= data[i].name %></td>
+                                    <td><%= data[i].address %></td>
+                                    <td><%= data[i].phone %></td>
+                                    <td>
+                                        <a href="/delete/<%= data[i].id%>" class="btn btn-danger">Eliminar</a>
+                                        <a href="/update/<%= data[i].id%>" class="btn btn-info">Actualizar</a>
+                                    </td>
+                                </tr>
+                            <%}%>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+        
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <label for="my-input">Nombre</label>
+                            <input id="my-input" class="form-control" type="text" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="my-input">Direccion</label>
+                            <input id="my-input" class="form-control" type="text" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="my-input">Telefono</label>
+                            <input id="my-input" class="form-control" type="number" name="phone">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
